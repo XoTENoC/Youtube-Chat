@@ -111,7 +111,14 @@ const getChatMessages = async () => {
   chatMessages.push(...newMessages);
   nextPage = data.nextPageToken;
   console.log('Total Chat Messages:', chatMessages.length);
-  console.log(data.items[1].snippet.displayMessage, " ", data.items[1].authorDetails.displayName)
+  console.log(data.items);
+  fs.writeFile("./object.json", JSON.stringify(data.items), (err) => {
+    if (err) {
+        console.error(err);
+        return;
+    };
+    console.log("File has been created");
+  });
 };
 
 youtubeService.startTrackingChat = () => {
