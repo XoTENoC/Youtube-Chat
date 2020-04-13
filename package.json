@@ -1,0 +1,24 @@
+{
+  "name": "youtube-chat",
+  "version": "1.0.0",
+  "description": "Youtube Chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XoTENoC/Youtube-Chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XoTENoC/Youtube-Chat/issues"
+  },
+  "homepage": "https://github.com/XoTENoC/Youtube-Chat#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "googleapis": "^48.0.0",
+    "save": "^2.4.0"
+  }
+}
