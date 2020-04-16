@@ -1,24 +1,43 @@
-function loadJSON(callback) {   
+function update() {
 
-    var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'object.json', true); // Replace 'my_data' with the path to your file
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);  
- }
+    fetch("./object.json")
+        .then(function (resp) {
+            return resp.json();
+        })
+        .then(function (data) {
+            var chat = data;
+            console.log(data);
+            setTimeout(update, 1000);
+            // console.log(Object.keys(data.items).length);
+            for (let i = 0; i < Object.keys(data.items).length; i++) {
+                // chatBox.innerHTML += data.items[i].authorDetails.displayName;
+                // chatBox.innerHTML += ': ';
+                // chatBox.innerHTML += data.items[i].snippet.displayMessage;
+                // chatBox.innerHTML += '<br>';
 
-// Call to function with anonymous callback
-loadJSON(function(response) {
-    // Do Something with the response e.g.
-    //jsonresponse = JSON.parse(response);
+                const chatBox = document.getElementById("chat");
+                const chatName = document.createElement("div");
+                const chatMessage = document.createElement("div");
+                const row = document.createElement("div");
 
-    // Assuming json data is wrapped in square brackets as Drew suggests
-    //console.log(jsonresponse[0].name);
-    console.log(response);
+                const chatNameText = document.createTextNode(data.items[i].authorDetails.displayName);
+                const chatMessageText = document.createTextNode(data.items[i].snippet.displayMessage);
 
-});
+                const collum4 = ['col', 's4'];
+                const collum8 = ['col', 's8'];
+
+                chatName.appendChild(chatNameText);
+                chatName.classList.add(...collum4);
+                chatMessage.appendChild(chatMessageText);
+                chatMessage.classList.add(...collum8);
+                row.appendChild(chatName);
+                row.appendChild(chatMessage);
+                row.classList.add("row");
+                chatBox.appendChild(row);
+
+            }
+        })
+
+}
+
+update();

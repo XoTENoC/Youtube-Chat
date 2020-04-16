@@ -7,7 +7,7 @@ const fs = require('fs');
 
 let liveChatId; // Where we'll store the id of our liveChat
 let nextPage; // How we'll keep track of pagination for chat messages
-const intervalTime = 5000; // Miliseconds between requests to check chat messages
+const intervalTime = 1000; // Miliseconds between requests to check chat messages
 let interval; // variable to store and control the interval that will check messages
 let chatMessages = []; // where we'll store all messages
 
@@ -112,7 +112,7 @@ const getChatMessages = async () => {
   nextPage = data.nextPageToken;
   console.log('Total Chat Messages:', chatMessages.length);
   console.log(data.items);
-  fs.writeFile("./object.json", JSON.stringify(data.items), (err) => {
+  fs.writeFile("./object.json", JSON.stringify(data), (err) => {
     if (err) {
         console.error(err);
         return;

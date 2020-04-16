@@ -9,6 +9,18 @@ server.get('/', (req, res) =>
   res.sendFile(path.join(__dirname + '/index.html'))
 );
 
+server.get('/object.json', (req, res) =>
+  res.sendFile(path.join(__dirname + '/object.json'))
+);
+
+server.get('/app.js', (req, res) =>
+  res.sendFile(path.join(__dirname + '/app.js'))
+);
+
+server.get('/css/materialize.min.css', (req, res) =>
+  res.sendFile(path.join(__dirname + '/css/materialize.min.css'))
+);
+
 server.get('/authorize', (request, response) => {
   console.log('/auth');
   youtubeService.getCode(response);
